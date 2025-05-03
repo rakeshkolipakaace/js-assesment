@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Part 5: Loops Challenge</h2>
+ 
+  <script>
+    const numbers = [10, 5, 8, 20, 3, 15, 25];
+
+    for (const num of numbers) {
+      if (num > 12) {
+        console.log("Found a large number!");
+        break;
+      }
+      if (num === 5) {
+        console.log("Skipping 5!");
+        continue;
+      }
+      console.log(num);
+    }
+
+    
+    console.log("Processing array [10, 5, 8, 20, 3, 15, 25]");
+    for (const num of numbers) {
+      if (num > 12) {
+        console.log("Found a large number!");
+        break;
+      }
+      if (num === 5) {
+        console.log("Skipping 5!");
+        continue;
+      }
+      console.log(num);
+    }
+  </script>
+</body>
+</html>

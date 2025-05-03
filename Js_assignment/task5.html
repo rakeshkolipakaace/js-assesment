@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Part 3: The Power of Closures</h2>
+  <button onclick="incrementCounterOne()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Increment Counter One</button>
+  <button onclick="decrementCounterOne()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Decrement Counter One</button>
+  <button onclick="decrementCounterTwo()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Decrement Counter Two</button>
+ 
+  <script>
+    function setupCounter(initialValue) {
+      let count = initialValue;
+      function increment() {
+        count++;
+        return count;
+      }
+      function decrement() {
+        count--;
+        return count;
+      }
+      return {
+        increment: increment,
+        decrement: decrement
+      };
+    }
+
+    const counterOne = setupCounter(5);
+    const counterTwo = setupCounter(10);
+
+    function incrementCounterOne() {
+      console.log("Counter One value:", counterOne.increment());
+    }
+
+    function decrementCounterOne() {
+      console.log("Counter One value:", counterOne.decrement());
+    }
+
+    function decrementCounterTwo() {
+      console.log("Counter Two value:", counterTwo.decrement());
+    }
+
+
+    console.log(" Operations on counters");
+    console.log("Counter One value:", counterOne.increment()); 
+    console.log("Counter Two value:", counterTwo.decrement()); 
+    console.log("Counter One value:", counterOne.decrement()); 
+  </script>
+</body>
+</html>

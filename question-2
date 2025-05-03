@@ -1,0 +1,27 @@
+const items=[{
+    name:"Alpha",process:function(){
+        console.log(`processing ${this.name}`)
+    }
+    
+},
+{
+    name:"Beta",process:function(){
+        console.log(`processing ${this.name}`)
+    }
+    
+}
+
+    
+]
+
+
+function processObjectsDelayed(items,delay){
+    items.forEach( (items,index) => {
+        setTimeout(() => {
+            items.process()
+        }, delay*(index+1));
+        
+    });
+}
+
+processObjectsDelayed(items,3000)

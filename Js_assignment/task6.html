@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Part 4: Objects - Properties and the Illusion of Order</h2>
+  
+  <script>
+    const myObject = {
+      z: 1,
+      a: 2,
+      10: 3,
+      b: 4,
+      2: 5,
+      c: 6
+    };
+
+    console.log("Using for loop objects are--");
+    for (const key in myObject) {
+      console.log(key, myObject[key]);
+    }
+
+    console.log("Using object accessing keys :");
+    console.log(Object.keys(myObject));
+
+
+    console.log("Iterating over object properties using for loop");
+    
+    for (const key in myObject) {
+      console.log(key, myObject[key]);
+    }
+    console.log("Object.keys() Output:");
+    console.log(Object.keys(myObject));
+  </script>
+</body>
+</html>

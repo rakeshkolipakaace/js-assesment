@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Problem 2: The Delayed Greeter</title>
+</head>
+<body>
+  <h2>Problem 2: The Delayed Greeter <p>Common Pitfall Example</p></h2>
+  <button onclick="runGreeterVar()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run Greeter with var</button>
+  <button onclick="runGreeterIIFE()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run Greeter with IIFE</button>
+  <button onclick="runGreeterLet()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run Greeter with let</button>
+  <script>
+    const names = ['Alice', 'Bob', 'Charlie'];
+
+    function runGreeterVar() {
+      console.log("Greeter with var:");
+      for (var i = 0; i < names.length; i++) {
+        setTimeout(function() {
+          console.log(`Hello, ${names[i]}!`);
+        }, i * 1000);
+      }
+    }
+
+    function runGreeterIIFE() {
+      console.log("Greeter with IIFE:");
+      for (var i = 0; i < names.length; i++) {
+        (function(index) {
+          setTimeout(function() {
+            console.log(`Hello, ${names[index]}!`);
+          }, index * 1000);
+        })(i);
+      }
+    }
+
+    function runGreeterLet() {
+      console.log("Greeter with let:");
+      for (let i = 0; i < names.length; i++) {
+        setTimeout(function() {
+          console.log(`Hello, ${names[i]}!`);
+        }, i * 1000);
+      }
+    }
+
+    console.log("Example: Running Greeter with var");
+    runGreeterVar();
+    setTimeout(() => {
+      console.log("Example: Running Greeter with IIFE");
+      runGreeterIIFE();
+    }, 4000);
+    setTimeout(() => {
+      console.log("Example: Running Greeter with let");
+      runGreeterLet();
+    }, 8000);
+  </script>
+</body>
+</html>

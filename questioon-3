@@ -1,0 +1,22 @@
+const data = [{
+    a: "short",
+    b: "Long String",
+    c: 123,
+    d: "very long string indeed"
+}];
+
+function filterObjectProperties(obj, len) {
+    const res = {};
+
+    for (const key in obj) {
+        const value = obj[key];
+
+        if (typeof value === "string" && value.length > len) {
+            res[key] = value;
+        }
+    }
+    return res;
+}
+
+const filtered = filterObjectProperties(data[0], 6);
+console.log(filtered);

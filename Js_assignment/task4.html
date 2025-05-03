@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Part 2: The Perils of this</title>
+</head>
+<body>
+  <h2>Part 2: The Perils of this <p>Common Pitfall Example</p></h2>
+  <button onclick="runWithRegular()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run with Regular Function</button>
+  <button onclick="runWithTraditional()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run with Traditional Fix</button>
+  <button onclick="runWithArrow()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run with Arrow Function</button>
+  
+
+
+  <script>
+    function runWithRegular() {
+      console.log("Running with Regular Function:");
+      const user = {
+        name: "Alice",
+        greetDelayed: function() {
+          setTimeout(function() {
+            console.log(`Hello, ${this.name}!`);
+          }, 1000);
+        }
+      };
+      user.greetDelayed();
+    }
+
+    function runWithTraditional() {
+      console.log("Running with Traditional Fix:");
+      const userCorrectedTraditional = {
+        name: "Alice",
+        greetDelayed: function() {
+          const self = this;
+          setTimeout(function() {
+            console.log(`Hello, ${self.name}!`);
+          }, 1000);
+        }
+      };
+      userCorrectedTraditional.greetDelayed();
+    }
+
+    function runWithArrow() {
+      console.log("Running with Arrow Function:");
+      const userCorrectedArrow = {
+        name: "Bob",
+        greetDelayed: function() {
+          setTimeout(() => {
+            console.log(`Hello, ${this.name}!`);
+          }, 1000);
+        }
+      };
+      userCorrectedArrow.greetDelayed();
+    }
+
+    console.log("Example: Running all versions");
+    runWithRegular();
+    setTimeout(() => {
+      runWithTraditional();
+    }, 2000);
+    setTimeout(() => {
+      runWithArrow();
+    }, 4000);
+  </script>
+</body>
+</html>

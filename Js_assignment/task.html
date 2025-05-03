@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Problem 1: Persistent Counter (Closures)</title>
+</head>
+<body>
+  <h2>Problem 1: Persistent Counter (Closures)</h2>
+  <button onclick="incrementCounterA()" style="background-color: rgb(19, 18, 18); color: rgb(238, 231, 231); border: 1px solid black; padding: 8px 16px; cursor: pointer;">Increment Counter A</button>
+  <button onclick="incrementCounterB()" style="background-color: rgb(20, 18, 18); color: rgb(250, 246, 246); border: 1px solid black; padding: 8px 16px; cursor: pointer;">Increment Counter B</button>
+  
+  <script>
+    function createCounter() {
+      let count = 0;
+      function incrementCounter() {
+        count++;
+        return count;
+      }
+      return incrementCounter;
+    }
+
+    const counterA = createCounter();
+    const counterB = createCounter();
+
+    function incrementCounterA() {
+      console.log("Counter A value:", counterA());
+    }
+
+    function incrementCounterB() {
+      console.log("Counter B value:", counterB());
+    }
+
+
+    console.log("Initial calls to counters");
+    console.log("Counter A value:", counterA()); 
+    console.log("Counter B value:", counterB()); 
+  </script>
+</body>
+</html>

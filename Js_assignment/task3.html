@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Part 1: Variable Scope and Hoisting</title>
+</head>
+<body>
+  <h2>Part 1: Variable Scope and Hoisting <p>Common Pitfall Example</p></h2>
+
+
+  <button onclick="runWithVar()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run with var</button>
+  <button onclick="runWithLet()" style="background-color: black; color: white; border: 1px solid black; padding: 8px 16px; cursor: pointer;" onmouseover="this.style.backgroundColor='#333'" onmouseout="this.style.backgroundColor='black'">Run with let</button>
+
+
+  <script>
+    function runWithVar() {
+      console.log("Running with var:");
+      console.log(mysteryVariable);
+      mysteryVariable = 10;
+      console.log(mysteryVariable);
+      function revealMystery() {
+        console.log("Inside revealMystery:", mysteryVariable);
+        var mysteryVariable = 20;
+        console.log("Inside revealMystery (after declaration):", mysteryVariable);
+      }
+      revealMystery();
+      console.log("After revealMystery:", mysteryVariable);
+    }
+
+    function runWithLet() {
+      console.log("Running with let:");
+      try {
+        console.log(mysteryVariableLet);
+      } catch (e) {
+        console.log("Error:", e.message);
+      }
+      let mysteryVariableLet = 10;
+      console.log(mysteryVariableLet);
+      function revealMysteryLet() {
+        console.log("Inside revealMysteryLet:", typeof mysteryVariableLet === 'undefined' ? 'undefined' : mysteryVariableLet);
+        let mysteryVariableLet = 20;
+        console.log("Inside revealMysteryLet (after declaration):", mysteryVariableLet);
+      }
+      revealMysteryLet();
+      console.log("After revealMysteryLet:", mysteryVariableLet);
+    }
+
+    
+    console.log("Example: Running with var");
+    runWithVar();
+    console.log("---");
+    console.log("Example: Running with let");
+    runWithLet();
+  </script>
+</body>
+</html>

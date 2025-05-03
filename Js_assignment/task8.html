@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Part 4: Advanced Functions with Rest Parameters</h2>
+
+  <script>
+    function flexibleFunction(a, b, ...rest) {
+      console.log("a:", a);
+      console.log("b:", b);
+      console.log("rest:", rest);
+    }
+
+    console.log("Calling with one argument:");
+    flexibleFunction(1);
+
+    console.log("Calling with two arguments:");
+    flexibleFunction(1, 2);
+
+    console.log("Calling with five arguments:");
+    flexibleFunction(1, 2, 3, 4, 5);
+
+    
+    console.log("Example: Demonstrating rest parameters");
+    console.log("Calling with one argument:");
+    flexibleFunction(1);
+    console.log("Calling with two arguments:");
+    flexibleFunction(1, 2); 
+    console.log("Calling with five arguments:");
+    flexibleFunction(1, 2, 3, 4, 5); 
+  </script>
+</body>
+</html>

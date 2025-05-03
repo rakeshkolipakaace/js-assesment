@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h2>Part 5: Loops - Breaking Free and Skipping Steps</h2>
+
+  <script>
+    for (let i = 0; i < 10; i++) {
+      if (i % 3 === 0) {
+        continue;
+      }
+      if (i === 7) {
+        break;
+      }
+      console.log(i);
+    }
+
+    
+    console.log("Loop with continue and break");
+    for (let i = 0; i < 10; i++) {
+      if (i % 3 === 0) {
+        continue;
+      }
+      if (i === 7) {
+        break;
+      }
+      console.log(i);
+    }
+  </script>
+</body>
+</html>
