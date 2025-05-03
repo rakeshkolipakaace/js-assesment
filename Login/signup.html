@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate SignUp Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0a0a0a, #3a4452);
+            flex-direction: column;
+        }
+
+        .signup-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            width: 400px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .signup-container:hover {
+            transform: scale(1.05);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #fff;
+            outline: none;
+            color: #fff;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #00ff88;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        .input-group input:focus ~ label,
+        .input-group input:valid ~ label {
+            top: -20px;
+            font-size: 0.8em;
+            color: #00ff88;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #00ff88;
+            border: none;
+            border-radius: 25px;
+            color: #0a0a0a;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #00cc70;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #notification {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease, transform 0.3s ease;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        #notification.show {
+            opacity: 1;
+            transform: translateY(10px);
+        }
+
+        #notification:hover {
+            background: rgba(0, 255, 136, 0.3);
+            transform: translateY(8px) scale(1.02);
+        }
+
+        .nav-link {
+            display: block;
+            margin-top: 20px;
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #00cc70;
+        }
+
+        footer {
+            margin-top: 20px;
+            width: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.9em;
+            text-align: left;
+            backdrop-filter: blur(10px);
+        }
+
+        footer h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin: 5px 0;
+            padding: 5px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        footer li:hover {
+            background: rgba(0, 255, 136, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <div class="input-group">
+            <input type="text" id="username" required>
+            <label for="username">Username</label>
+        </div>
+        <div class="input-group">
+            <input type="email" id="email" required>
+            <label for="email">Email</label>
+        </div>
+        <div class="input-group">
+            <input type="password" id="password" required>
+            <label for="password">Password</label>
+        </div>
+        <div class="input-group">
+            <input type="password" id="confirm-password" required>
+            <label for="confirm-password">Confirm Password</label>
+        </div>
+        <button onclick="handleSignUp()">Sign Up</button>
+        <div id="notification"></div>
+        <a href="index.html" class="nav-link">Already have an account? Login</a>
+        <a href="details.html" class="nav-link">View Registered Details</a>
+    </div>
+
+    <footer>
+        <h3>Key SignUp Test Cases</h3>
+        <ul>
+            <li>Empty fields: Any input field is blank.</li>
+            <li>Invalid email format: Email doesn't match a valid format.</li>
+            <li>Weak password: Password < 8 characters.</li>
+            <li>Username already exists: Username is taken.</li>
+            <li>Email already exists: Email is taken.</li>
+            <li>Password mismatch: Password and confirm password don't match.</li>
+            <li>SQL injection attempt: Input like ' OR '1'='1.</li>
+            <li>Non-ASCII characters: Username with non-ASCII characters.</li>
+            <li>Multiple @ in email: Email with multiple @ symbols.</li>
+            <li>Password with no letters: Password contains only numbers/symbols.</li>
+        </ul>
+    </footer>
+
+    <script>
+        // Initialize stored credentials from localStorage
+        let storedCredentials = JSON.parse(localStorage.getItem('userCredentials')) || [];
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function showNotification(message, isSuccess = false) {
+            const notification = document.getElementById('notification');
+            notification.textContent = `Test Case Triggered: ${message}`;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function handleSignUp() {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Test Case 1: Empty fields
+            if (!username || !email || !password || !confirmPassword) {
+                showNotification('Empty fields');
+                return;
+            }
+
+            // Test Case 2: Invalid email format
+            if (!validateEmail(email)) {
+                showNotification('Invalid email format');
+                return;
+            }
+
+            // Test Case 3: Weak password
+            if (password.length < 8) {
+                showNotification('Weak password (< 8 characters)');
+                return;
+            }
+
+            // Test Case 4: Username already exists
+            if (storedCredentials.some(cred => cred.username === username)) {
+                showNotification('Username already exists');
+                return;
+            }
+
+            // Test Case 5: Email already exists
+            if (storedCredentials.some(cred => cred.email === email)) {
+                showNotification('Email already exists');
+                return;
+            }
+
+            // Test Case 6: Password mismatch
+            if (password !== confirmPassword) {
+                showNotification('Password mismatch');
+                return;
+            }
+
+            // Test Case 7: Max username length
+            if (username.length > 20) {
+                showNotification('Username exceeds 20 characters');
+                return;
+            }
+
+            // Test Case 8: SQL injection attempt
+            if (username.includes("'") || email.includes("'") || password.includes("'")) {
+                showNotification('SQL injection attempt detected');
+                return;
+            }
+
+            // Test Case 9: Non-ASCII characters
+            if (/[^\x00-\x7F]/.test(username)) {
+                showNotification('Non-ASCII characters in username');
+                return;
+            }
+
+            // Test Case 10: Whitespace in inputs
+            if (username !== username.trim() || email !== email.trim() || password !== password.trim()) {
+                showNotification('Whitespace in inputs');
+                return;
+            }
+
+            // Test Case 11: Special characters in username
+            if (!/^[a-zA-Z0-9]+$/.test(username)) {
+                showNotification('Special characters in username');
+                return;
+            }
+
+            // Test Case 12: Long email
+            if (email.length > 100) {
+                showNotification('Email exceeds 100 characters');
+                return;
+            }
+
+            // Test Case 13: Password with only spaces
+            if (/^\s*$/.test(password)) {
+                showNotification('Password contains only spaces');
+                return;
+            }
+
+            // Test Case 14: Short username
+            if (username.length < 3) {
+                showNotification('Username too short (< 3 characters)');
+                return;
+            }
+
+            // Test Case 15: Password too long
+            if (password.length > 50) {
+                showNotification('Password exceeds 50 characters');
+                return;
+            }
+
+            // Test Case 16: Email without domain
+            if (!email.includes('.')) {
+                showNotification('Email lacks valid domain');
+                return;
+            }
+
+            // Test Case 17: Confirm password with spaces
+            if (confirmPassword !== confirmPassword.trim()) {
+                showNotification('Confirm password contains spaces');
+                return;
+            }
+
+            // Test Case 18: Email with multiple @ symbols
+            if ((email.match(/@/g) || []).length > 1) {
+                showNotification('Email contains multiple @ symbols');
+                return;
+            }
+
+            // Test Case 19: Password with no letters
+            if (!/[a-zA-Z]/.test(password)) {
+                showNotification('Password must contain at least one letter');
+                return;
+            }
+
+            // Test Case 20: Unicode control characters
+            if (/[-\u001F\u007F-\u009F]/.test(username)) {
+                showNotification('Username contains control characters');
+                return;
+            }
+
+            // Success: Add to stored credentials
+            storedCredentials.push({ username, email, password });
+            localStorage.setItem('userCredentials', JSON.stringify(storedCredentials));
+            if (confirm('SignUp Successful! 🎉 Press OK to continue.')) {
+                // Clear input fields after confirmation
+                document.getElementById('username').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('confirm-password').value = '';
+            }
+        }
+    </script>
+</body>
+</html>

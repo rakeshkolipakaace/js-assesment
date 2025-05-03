@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+        button {
+            background-color: #6b5b95;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover {
+            background-color: #8775a8;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #2e2e4e;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #4a4a6a;
+        }
+        th {
+            background-color: #6b5b95;
+            color: white;
+        }
+        td {
+            background-color: #3a3a5a;
+            color: #d0d0d0;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>REGISTERED USER DETAILS</h1>
+    <button onclick="showCredentials()">Get Credentials</button>
+
+    <table id="userTable" class="hidden">
+        <thead>
+            <tr>
+                <th>USERNAME</th>
+                <th>EMAIL</th>
+                <th>PASSWORD</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- User details will be populated dynamically -->
+        </tbody>
+    </table>
+
+    <h1>LOGIN/LOGOUT HISTORY</h1>
+    <table id="historyTable">
+        <thead>
+            <tr>
+                <th>USERNAME</th>
+                <th>ACTION</th>
+                <th>TIMESTAMP</th>
+            </tr>
+        </thead>
+        <tbody id="historyBody">
+            <!-- History will be populated dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to show credentials table
+        function showCredentials() {
+            const table = document.getElementById('userTable');
+            table.classList.toggle('hidden');
+        }
+
+        // Load user credentials from localStorage
+        const storedCredentials = JSON.parse(localStorage.getItem('userCredentials')) || [];
+        const userTableBody = document.getElementById('userTableBody');
+        storedCredentials.forEach(cred => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${cred.username}</td>
+                <td>${cred.email}</td>
+                <td>${cred.password}</td>
+            `;
+            userTableBody.appendChild(row);
+        });
+
+        // Load history from localStorage
+        const historyData = JSON.parse(localStorage.getItem('historyData')) || [];
+        const historyBody = document.getElementById('historyBody');
+        historyData.forEach(entry => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${entry.username}</td>
+                <td>${entry.action}</td>
+                <td>${new Date(entry.timestamp).toLocaleString()}</td>
+            `;
+            historyBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
