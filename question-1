@@ -16,4 +16,4 @@ counter.increment();
 counter.getValue();
 const counter2 = createUniqueCounter();
 counter2.increment();
-counter.getValue()
+counter.getValue()//
